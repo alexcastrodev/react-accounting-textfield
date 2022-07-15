@@ -20,10 +20,6 @@ Maybe you want to use `yarn`.
 yarn add react-accounting-textfield
 ```
 
-## How to use
-
-This `package` does not have any dependencies. Therefore, you are free to design what you want.
-
 ## imports
 
 Import this module
