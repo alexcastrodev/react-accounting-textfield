@@ -1,0 +1,48 @@
+:root {
+    --react-accounting-textfield-color-neutral300: #D6D6D6;
+    --react-accounting-textfield-color-primary300: #56F09F;
+    --react-accounting-textfield-color-primary300: #56F09F;
+    --react-accounting-textfield-color-red300: #FDA29B;
+    --react-accounting-textfield-color-red500: #F04438;
+}
+
+
+.react-accounting-textfield--container input {
+    border-radius: 8px;
+    border: 1px solid var(--react-accounting-textfield-color-neutral300);
+    outline: none;
+}
+
+.react-accounting-textfield--container input:hover {
+    border: 1px solid var(--react-accounting-textfield-color-neutral500);
+}
+
+.react-accounting-textfield--container input:focus {
+    border: 1px solid var(--react-accounting-textfield-color-primary300);
+    box-shadow: 0px 0px 0px 4px #D5FFE8;
+}
+
+.react-accounting-textfield--fieldset--with-error label {
+    color: var(--react-accounting-textfield-color-red500);
+}
+
+.react-accounting-textfield--fieldset--with-error input {
+    border: 1px solid var(--react-accounting-textfield-color-red300);
+}
+
+.react-accounting-textfield--fieldset--with-error input:hover {
+    border: 1px solid var(--react-accounting-textfield-color-red300);
+}
+
+.react-accounting-textfield--fieldset--with-error input:focus {
+    border: 1px solid var(--react-accounting-textfield-color-red300);
+    box-shadow: 0px 0px 0px 4px #FEE4E2;
+}
+
+.react-accounting-textfield--fieldset--with-error .react-accounting-textfield--helperText {
+    color: var(--react-accounting-textfield-color-red500);
+}
+
+.react-accounting-textfield--helperText-icon-error path {
+    fill: var(--react-accounting-textfield-color-red500);
+}
