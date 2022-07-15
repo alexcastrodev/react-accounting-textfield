@@ -9,6 +9,7 @@ export const CurrencyInput: React.FC<IInputProps> = ({
   defaultValue,
   value,
   testID,
+  onChangeCurrency,
 }) => {
   const [inputValue, setInputValue] = React.useState<string>('')
 
@@ -29,9 +30,20 @@ export const CurrencyInput: React.FC<IInputProps> = ({
     }
   }, [])
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value)
+    const { value } = event.target
+    setInputValue(value)
+
+    const localValue = accounting.unformat(String(value) || '0', ',').toString()
+    const parsedValue = accounting.formatMoney(localValue, '', 2, '.', ',')
 
     inputProps?.onChange && inputProps.onChange(event)
+
+    onChangeCurrency &&
+      onChangeCurrency({
+        float: accounting.unformat(String(value) || '0', ','),
+        formatted: parsedValue,
+        cents: Number(parsedValue.replace(/[.,\s]/g, '')),
+      })
   }
 
   const handleBlur = React.useCallback(
