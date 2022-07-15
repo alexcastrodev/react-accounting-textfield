@@ -3,6 +3,9 @@ import { IInputProps } from './Input.types'
 import accounting from 'accounting'
 import { CurrencyInputControlled } from './Controlled'
 import { CurrencyInputUncontrolled } from './Uncontrolled'
+import { EuroSignIcon } from '../assets/icons/euro'
+import classnames from 'classnames'
+import { ExclamationCircleIcon } from '../assets/icons/exclamationCircle'
 
 export const CurrencyInput: React.FC<IInputProps> = ({
   inputProps,
@@ -10,6 +13,11 @@ export const CurrencyInput: React.FC<IInputProps> = ({
   value,
   testID,
   onChangeCurrency,
+  showCurrencyIcon,
+  size = 'md',
+  label,
+  error,
+  helperText,
 }) => {
   const [inputValue, setInputValue] = React.useState<string>('')
 
@@ -57,10 +65,24 @@ export const CurrencyInput: React.FC<IInputProps> = ({
     [inputValue]
   )
 
-  if (value) {
+  const renderInput = React.useMemo(() => {
+    if (value) {
+      return (
+        <CurrencyInputControlled
+          inputProps={inputProps}
+          value={String(inputValue)}
+          handleBlur={handleBlur}
+          handleChange={handleChange}
+          data-testid={testID}
+          setInputValue={setInputValue}
+        />
+      )
+    }
+
     return (
-      <CurrencyInputControlled
+      <CurrencyInputUncontrolled
         inputProps={inputProps}
+        defaultValue={String(defaultValue)}
         value={String(inputValue)}
         handleBlur={handleBlur}
         handleChange={handleChange}
@@ -68,18 +90,63 @@ export const CurrencyInput: React.FC<IInputProps> = ({
         setInputValue={setInputValue}
       />
     )
-  }
+  }, [
+    value,
+    inputProps,
+    defaultValue,
+    setInputValue,
+    testID,
+    inputValue,
+    handleBlur,
+    handleChange,
+  ])
 
   return (
-    <CurrencyInputUncontrolled
-      inputProps={inputProps}
-      defaultValue={String(defaultValue)}
-      value={String(inputValue)}
-      handleBlur={handleBlur}
-      handleChange={handleChange}
-      data-testid={testID}
-      setInputValue={setInputValue}
-    />
+    <fieldset
+      className={classnames({
+        'react-accounting-textfield--fieldset': true,
+        'react-accounting-textfield--fieldset--with-error':
+          typeof error === 'boolean' ? error : false,
+      })}
+    >
+      {label && (
+        <label className='react-accounting-textfield--label'> {label}</label>
+      )}
+      <div
+        className={classnames({
+          'react-accounting-textfield--container': true,
+          'react-accounting-textfield--container-with-adorment':
+            showCurrencyIcon,
+          'react-accounting-textfield--container-sm': size === 'sm',
+          'react-accounting-textfield--container-md': size === 'md',
+          'react-accounting-textfield--container-lg': size === 'lg',
+          'react-accounting-textfield--container--with-label': !!label,
+        })}
+      >
+        {showCurrencyIcon && (
+          <div
+            className={classnames({
+              'react-accounting-textfield-with-adorment': showCurrencyIcon,
+            })}
+          >
+            <EuroSignIcon />
+          </div>
+        )}
+        {renderInput}
+      </div>
+      {helperText && (
+        <div className='react-accounting-textfield--helperText-container'>
+          {error && (
+            <i className='react-accounting-textfield--helperText-icon-error'>
+              <ExclamationCircleIcon />
+            </i>
+          )}
+          <span className='react-accounting-textfield--helperText'>
+            {helperText}
+          </span>
+        </div>
+      )}
+    </fieldset>
   )
 }
 

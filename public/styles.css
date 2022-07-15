@@ -1,0 +1,82 @@
+:root {
+    --react-accounting-textfield-color-neutral500: #737373;
+    --react-accounting-textfield-color-neutral900: #141414;
+    --react-accounting-textfield-fontsize-input: 14px;
+    --react-accounting-textfield-size-sm: 32px;
+    --react-accounting-textfield-size-md: 40px;
+    --react-accounting-textfield-size-lg: 48px;
+}
+.react-accounting-textfield--fieldset {
+    border: none;
+    display: inline-block;
+}
+
+.react-accounting-textfield--container {
+    position: relative;
+    display: flex;
+    align-self: center;
+}
+
+.react-accounting-textfield--container--with-label {
+    margin-top: 8px;
+}
+
+.react-accounting-textfield--container-sm {
+    height: var(--react-accounting-textfield-size-sm);
+}
+
+.react-accounting-textfield--container-md {
+    height: var(--react-accounting-textfield-size-md);
+}
+
+.react-accounting-textfield--container-lg {
+    height: var(--react-accounting-textfield-size-lg);    
+}
+
+.react-accounting-textfield--container-sm input,
+.react-accounting-textfield--container-lg input,
+.react-accounting-textfield--container-md input {
+    padding: 8px 12px;
+}
+
+.react-accounting-textfield-with-adorment {
+    display: inline-flex;
+    position: absolute;
+    padding: 0 8px 0 12px;
+    height: 100%;
+    align-items: center;
+}
+
+.react-accounting-textfield--container-with-adorment input {
+    padding-left: 31px;
+    color: var(--react-accounting-textfield-color-neutral900);
+    font-size: var(--react-accounting-textfield-fontsize-input);
+}
+
+.react-accounting-textfield--container-with-adorment svg {
+    align-self: center;
+    height: 16px;
+}
+
+.react-accounting-textfield--container-with-adorment path {
+    color: var(--react-accounting-textfield-color-neutral500);
+}
+
+
+.react-accounting-textfield--helperText-container {
+    padding-top: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.react-accounting-textfield--helperText {
+    font-size: var(--react-accounting-textfield-fontsize-input);
+    color: var(--react-accounting-textfield-color-neutral500);
+}
+
+.react-accounting-textfield--helperText-icon-error {
+    margin-right: 4px;
+}
+.react-accounting-textfield--helperText-icon-error svg {
+    width: 12px;
+}

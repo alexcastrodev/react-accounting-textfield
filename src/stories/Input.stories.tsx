@@ -2,6 +2,8 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { within, userEvent } from '@storybook/testing-library'
 import Component from '../Input'
+import '../../public/styles.css'
+import '../../public/theme/flecto.css'
 
 export default {
   title: 'Component/Input',
@@ -49,10 +51,32 @@ Uncontrolled.args = {
   },
 }
 
-export const Empty = Template.bind({})
+export const UncontrolledWithCurrencyIcon = Template.bind({})
 
-Empty.args = {
-  value: '',
+UncontrolledWithCurrencyIcon.args = {
+  defaultValue: '10',
+  showCurrencyIcon: true,
+  inputProps: {
+    placeholder: '0,00',
+  },
+}
+
+export const UncontrolledWithLabel = Template.bind({})
+
+UncontrolledWithLabel.args = {
+  defaultValue: '10',
+  label: 'Name',
+  inputProps: {
+    placeholder: '0,00',
+  },
+}
+
+export const UncontrolledWithHelperText = Template.bind({})
+
+UncontrolledWithHelperText.args = {
+  defaultValue: '10',
+  helperText: 'Enter with your name',
+  label: 'Name',
   inputProps: {
     placeholder: '0,00',
   },
