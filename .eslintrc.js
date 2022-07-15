@@ -1,0 +1,136 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2020: true,
+    jest: true,
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+      node: {
+        paths: ['src'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+    react: {
+      version: 'detect',
+    },
+  },
+  extends: [
+    'plugin:import/typescript',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'airbnb/base',
+    'plugin:storybook/recommended',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: './tsconfig.json',
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 11,
+    sourceType: 'module',
+  },
+  plugins: ['react', '@typescript-eslint', 'prettier', 'react-hooks', 'jest'],
+  rules: {
+    indent: 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/no-unescaped-entities': [
+      'error',
+      {
+        forbid: [
+          {
+            char: '>',
+            alternatives: ['&gt;'],
+          },
+          {
+            char: '}',
+            alternatives: ['&#125;'],
+          },
+        ],
+      },
+    ],
+    'react/jsx-filename-extension': [
+      1,
+      {
+        extensions: ['.ts', '.tsx'],
+      },
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+      },
+    ],
+    'import/extensions': 'off',
+    'react/prop-types': 0,
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+    'import/no-default-export': 'off',
+    'react/jsx-key': 'off',
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
+    'import/no-named-as-default': 'off',
+    semi: [2, 'never'],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'off',
+    'react/jsx-filename-extension': [
+      1,
+      {
+        extensions: ['.tsx'],
+      },
+    ],
+    'import/prefer-default-export': 'off',
+    'react/destructuring-assignment': 'off',
+    'no-confusing-arrow': 'warn',
+    'function-paren-newline': 'warn',
+    'no-empty-pattern': 'warn',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-empty-function': 'warn',
+    'no-use-before-define': 'off',
+    'react/state-in-constructor': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'no-console': ['off'],
+    'global-require': 'off',
+    'no-param-reassign': 'off',
+    'no-plusplus': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'no-nested-ternary': 'off',
+    'prefer-const': 'off',
+    'import/order': 'off',
+    'comma-dangle': 'off',
+    'implicit-arrow-linebreak': 'off',
+    'operator-linebreak': 'off',
+    'object-curly-newline': 'off',
+    'no-unused-expressions': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    'linebreak-style': 'off',
+    'react/jsx-key': ['off'],
+  },
+  ignorePatterns: [
+    'packages/*',
+    'node_modules/*',
+    '*.config.js',
+    '*.test.js',
+    '*.test.tsx',
+    '*.test.ts',
+    '*.stories.ts',
+    '*.stories.tsx',
+    '*.spec.js',
+    '*.spec.tsx',
+    '*.d.ts',
+    'jest/*',
+    '.*.js',
+    'scripts/*.js',
+  ],
+  globals: {
+    _DEV_: true,
+  },
+}
