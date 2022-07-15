@@ -14,12 +14,15 @@ export const CurrencyInput: React.FC<IInputProps> = ({
     inputProps?.onChange && inputProps.onChange(event)
   }
 
-  const handleBlur = React.useCallback((event: React.FocusEvent<HTMLInputElement>) => {
-    let localValue = accounting.unformat(inputValue, ",")
-    setInputValue(accounting.formatMoney(localValue, "", 2, ".", ","))
+  const handleBlur = React.useCallback(
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      let localValue = accounting.unformat(inputValue, ',')
+      setInputValue(accounting.formatMoney(localValue, '', 2, '.', ','))
 
-    inputProps?.onBlur && inputProps.onBlur(event)
-  }, [inputValue])
+      inputProps?.onBlur && inputProps.onBlur(event)
+    },
+    [inputValue]
+  )
 
   return (
     <div>
