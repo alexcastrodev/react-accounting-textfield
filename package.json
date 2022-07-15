@@ -1,6 +1,6 @@
 {
-  "name": "react-currency-textfield",
-  "version": "0.1.0",
+  "name": "react-accounting-textfield",
+  "version": "0.1.6",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -18,7 +18,9 @@
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "prettier": "prettier --config .prettierrc \"src/**/*.{ts,tsx}\" --write",
     "predeploy": "npm run build-storybook",
-    "deploy-storybook": "gh-pages -d storybook-static"
+    "deploy-storybook": "gh-pages -d storybook-static",
+    "publish:dev": "npm run build && npm publish --registry http://localhost:4873",
+    "publish:production": "npm run build && npm publish --registry https://registry.npmjs.org/"
   },
   "keywords": [],
   "author": "Alexandro castro",

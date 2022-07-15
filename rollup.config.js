@@ -16,12 +16,14 @@ export default [
                 file: packageJson.main,
                 format: 'cjs',
                 sourcemap: true,
-                name: 'react-ts-lib'
+                name: 'react-accounting-textfield',
+                exports: 'named'
             },
             {
                 file: packageJson.module,
                 format: 'esm',
-                sourcemap: true
+                sourcemap: true,
+                exports: 'named'
             }
         ],
         plugins: [
