@@ -17,7 +17,6 @@ const Template: ComponentStory<typeof Component> = (args) => (
 
 export const InputCurrency = Template.bind({})
 
-
 InputCurrency.args = {
   inputProps: {
     placeholder: '0,00',
@@ -26,7 +25,10 @@ InputCurrency.args = {
 
 InputCurrency.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement)
-  await userEvent.type(canvas.getByTestId('react-currency-input-uncontrolled'), '1240,24')
+  await userEvent.type(
+    canvas.getByTestId('react-currency-input-uncontrolled'),
+    '1240,24'
+  )
 }
 
 export const Controlled = Template.bind({})
