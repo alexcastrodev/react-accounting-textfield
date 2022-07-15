@@ -12,7 +12,7 @@ export interface IInputProps {
   value?: string | number
   testID?: string
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-  onChangeCurrency: (data: ChangeCurrencyEvent) => void
+  onChangeCurrency?: (data: ChangeCurrencyEvent) => void
   showCurrencyIcon?: boolean
   error?: boolean
   helperText?: string | React.ReactElement

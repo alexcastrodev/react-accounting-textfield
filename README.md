@@ -1,7 +1,3 @@
-# Notes
-
-Not available at NPM yet
-
 # Docs
 
 <a href="https://alexcastrodev.github.io/shopify-input-currency"> Documentation / Preview </a>
