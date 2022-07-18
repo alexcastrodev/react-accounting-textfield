@@ -2,6 +2,10 @@
 
 <a href="https://alexcastrodev.github.io/shopify-input-currency"> Documentation / Preview </a>
 
+# Package
+
+<a href="https://www.npmjs.com/package/react-accounting-textfield"> NPM package </a>
+
 # Quick Start
 
 If you want to use `npm`, you can use this command.
