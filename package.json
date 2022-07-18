@@ -1,6 +1,6 @@
 {
   "name": "react-accounting-textfield",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -35,6 +35,8 @@
     "@storybook/addon-interactions": "^6.5.9",
     "@storybook/addon-links": "^6.5.9",
     "@storybook/builder-webpack4": "^6.5.9",
+    "@storybook/addon-a11y": "^6.5.9",
+    "@storybook/jest": "^0.0.10",
     "@storybook/manager-webpack4": "^6.5.9",
     "@storybook/react": "^6.5.9",
     "@storybook/testing-library": "^0.0.13",

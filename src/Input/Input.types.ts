@@ -18,6 +18,8 @@ export interface IInputProps {
   helperText?: string | React.ReactElement
   size?: InputSize
   label?: string | React.ReactElement
+  minValue?: number
+  maxValue?: number
 }
 export interface IInputComponentProps {
   value: string
