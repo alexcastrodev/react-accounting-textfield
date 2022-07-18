@@ -2,6 +2,10 @@
 
 <a href="https://alexcastrodev.github.io/shopify-input-currency"> Documentation / Preview </a>
 
+# Package
+
+<a href="https://www.npmjs.com/package/react-accounting-textfield"> NPM package </a>
+
 # Quick Start
 
 If you want to use `npm`, you can use this command.
@@ -37,6 +41,18 @@ If you want a flecto theme stylesheet, you should import the style:
 ```javascript
 import 'react-accounting-textfield/dist/theme/flecto.css'
 ```
+
+## Tests
+
+Storybook provides a clean-room environment for testing components in isolation. Stories make it easy to explore a component in all its variations, no matter how complex.
+
+That means stories are a pragmatic starting point for your UI testing strategy. You already write stories as a natural part of UI development, testing those stories is a low-effort way to prevent UI bugs over time.
+
+```bash
+yarn test-storybook
+```
+
+Docs: https://storybook.js.org/docs/react/writing-tests/introduction
 
 ## How to contribute
 

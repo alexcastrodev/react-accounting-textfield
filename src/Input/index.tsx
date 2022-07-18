@@ -18,6 +18,8 @@ export const CurrencyInput: React.FC<IInputProps> = ({
   label,
   error,
   helperText,
+  minValue,
+  maxValue,
 }) => {
   const [inputValue, setInputValue] = React.useState<string>('')
 
@@ -37,21 +39,47 @@ export const CurrencyInput: React.FC<IInputProps> = ({
       )
     }
   }, [])
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target
+
+  const emitChanges = (
+    value: string,
+    event: React.ChangeEvent<HTMLInputElement>,
+    props: unknown
+  ) => {
     setInputValue(value)
-
-    const localValue = accounting.unformat(String(value) || '0', ',').toString()
-    const parsedValue = accounting.formatMoney(localValue, '', 2, '.', ',')
-
     inputProps?.onChange && inputProps.onChange(event)
 
-    onChangeCurrency &&
-      onChangeCurrency({
-        float: accounting.unformat(String(value) || '0', ','),
-        formatted: parsedValue,
-        cents: Number(parsedValue.replace(/[.,\s]/g, '')),
-      })
+    onChangeCurrency && onChangeCurrency(props)
+  }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target
+    const floatValue = accounting.unformat(String(value) || '0', ',')
+    const localValue = floatValue.toString()
+    const parsedValue = accounting.formatMoney(localValue, '', 2, '.', ',')
+    const props = {
+      float: floatValue,
+      formatted: parsedValue,
+      cents: Number(parsedValue.replace(/[.,\s]/g, '')),
+    }
+
+    if (!maxValue && !minValue) {
+      emitChanges(value, event, props)
+    }
+
+    const isTestedMaxValue = maxValue && floatValue <= maxValue
+    const isTestedMinValue = minValue && floatValue >= minValue
+
+    if (minValue && !maxValue && isTestedMinValue) {
+      emitChanges(value, event, props)
+    }
+
+    if (maxValue && !minValue && isTestedMaxValue) {
+      emitChanges(value, event, props)
+    }
+
+    if (maxValue && minValue && isTestedMinValue && isTestedMaxValue) {
+      emitChanges(value, event, props)
+    }
   }
 
   const handleBlur = React.useCallback(
