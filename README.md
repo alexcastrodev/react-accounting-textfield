@@ -24,6 +24,20 @@ Import this module
 import CurrencyInput from 'react-accounting-textfield'
 ```
 
+## Styles
+
+If you want a default stylesheet, you should import the style:
+
+```javascript
+import 'react-accounting-textfield/dist/styles.css'
+```
+
+If you want a flecto theme stylesheet, you should import the style:
+
+```javascript
+import 'react-accounting-textfield/dist/theme/flecto.css'
+```
+
 ## How to contribute
 
 ### Start
