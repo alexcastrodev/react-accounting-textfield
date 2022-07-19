@@ -35,14 +35,24 @@ InputCurrency.play = async ({ canvasElement }) => {
   )
 }
 
-export const Controlled = Template.bind({})
-
-Controlled.args = {
-  value: '10,24',
-  inputProps: {
-    placeholder: '0,00',
-  },
+const TemplateControlled: ComponentStory<typeof Component> = (args) => {
+  const [value, setValue] = React.useState('0')
+  return (
+    <Component
+      value={value}
+      inputProps={{
+        placeholder: '0',
+        onChange: (event) => {
+          setValue(event.target.value)
+        },
+      }}
+    />
+  )
 }
+
+export const Controlled = TemplateControlled.bind({})
+
+Controlled.args = {}
 
 export const Uncontrolled = Template.bind({})
 

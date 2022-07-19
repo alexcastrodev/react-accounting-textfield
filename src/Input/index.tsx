@@ -1,5 +1,5 @@
 import React from 'react'
-import { IInputProps } from './Input.types'
+import { ChangeCurrencyEvent, IInputProps } from './Input.types'
 import accounting from 'accounting'
 import { CurrencyInputControlled } from './Controlled'
 import { CurrencyInputUncontrolled } from './Uncontrolled'
@@ -24,15 +24,17 @@ export const CurrencyInput: React.FC<IInputProps> = ({
   const [inputValue, setInputValue] = React.useState<string>('')
 
   React.useEffect(() => {
-    if (!value) {
-      return
-    }
-    const localValue = accounting.unformat(String(value) || '0', ',').toString()
-
-    setInputValue(accounting.formatMoney(localValue, '', 2, '.', ','))
+    typeof value !== 'undefined' && setInputValue(String(value))
   }, [value])
 
   React.useEffect(() => {
+    if (value) {
+      const localValue = accounting
+        .unformat(String(value) || '0', ',')
+        .toString()
+
+      setInputValue(accounting.formatMoney(localValue, '', 2, '.', ','))
+    }
     if (defaultValue && value) {
       console.warn(
         'You are trying to use controlled and uncontrolled at the same time. Just used inputProps.value or just defaultValue'
@@ -41,11 +43,11 @@ export const CurrencyInput: React.FC<IInputProps> = ({
   }, [])
 
   const emitChanges = (
-    value: string,
+    currentValue: string,
     event: React.ChangeEvent<HTMLInputElement>,
-    props: unknown
+    props: ChangeCurrencyEvent
   ) => {
-    setInputValue(value)
+    !value && setInputValue(currentValue)
     inputProps?.onChange && inputProps.onChange(event)
 
     onChangeCurrency && onChangeCurrency(props)
