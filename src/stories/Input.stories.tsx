@@ -41,7 +41,7 @@ const TemplateControlled: ComponentStory<typeof Component> = (args) => {
     <Component
       value={value}
       inputProps={{
-        placeholder: '0',
+        placeholder: '0,00',
         onChange: (event) => {
           setValue(event.target.value)
         },

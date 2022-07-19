@@ -95,42 +95,6 @@ export const CurrencyInput: React.FC<IInputProps> = ({
     [inputValue]
   )
 
-  const renderInput = React.useMemo(() => {
-    if (value) {
-      return (
-        <CurrencyInputControlled
-          inputProps={inputProps}
-          value={String(inputValue)}
-          handleBlur={handleBlur}
-          handleChange={handleChange}
-          data-testid={testID}
-          setInputValue={setInputValue}
-        />
-      )
-    }
-
-    return (
-      <CurrencyInputUncontrolled
-        inputProps={inputProps}
-        defaultValue={String(defaultValue)}
-        value={String(inputValue)}
-        handleBlur={handleBlur}
-        handleChange={handleChange}
-        data-testid={testID}
-        setInputValue={setInputValue}
-      />
-    )
-  }, [
-    value,
-    inputProps,
-    defaultValue,
-    setInputValue,
-    testID,
-    inputValue,
-    handleBlur,
-    handleChange,
-  ])
-
   return (
     <fieldset
       className={classnames({
@@ -162,7 +126,29 @@ export const CurrencyInput: React.FC<IInputProps> = ({
             <EuroSignIcon />
           </div>
         )}
-        {renderInput}
+
+        {typeof value !== 'undefined' && (
+          <CurrencyInputControlled
+            inputProps={inputProps}
+            value={String(inputValue)}
+            handleBlur={handleBlur}
+            handleChange={handleChange}
+            data-testid={testID}
+            setInputValue={setInputValue}
+          />
+        )}
+
+        {typeof value === 'undefined' && (
+          <CurrencyInputUncontrolled
+            inputProps={inputProps}
+            defaultValue={String(defaultValue)}
+            value={String(inputValue)}
+            handleBlur={handleBlur}
+            handleChange={handleChange}
+            data-testid={testID}
+            setInputValue={setInputValue}
+          />
+        )}
       </div>
       {helperText && (
         <div className='react-accounting-textfield--helperText-container'>
