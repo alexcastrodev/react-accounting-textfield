@@ -8,12 +8,29 @@ export const CurrencyInputControlled: React.FC<IInputComponentProps> = ({
   value,
   testID = 'react-currency-input-controlled',
 }) => {
+  const [cursor, setCursor] = React.useState(0)
+  const ref = React.useRef(null)
+
+  React.useEffect(() => {
+    const input: any = ref.current
+    if (input) {
+      input.setSelectionRange(cursor, cursor)
+    }
+  }, [ref, cursor, value])
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const caretEnd = e.target?.selectionEnd || 0
+    setCursor(caretEnd)
+    handleChange && handleChange(e)
+  }
+
   return (
     <input
       {...inputProps}
       value={value}
       onBlur={handleBlur}
-      onChange={handleChange}
+      ref={ref}
+      onChange={handleChangeInput}
       data-testid={testID}
     />
   )
