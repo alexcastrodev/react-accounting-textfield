@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.4] - 2022-07-19
+
+- Fixed input controller
+
 ## [1.2.3] - 2022-07-18
 
 - Added integration tests
