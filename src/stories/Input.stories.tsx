@@ -40,6 +40,9 @@ const TemplateControlled: ComponentStory<typeof Component> = (args) => {
   return (
     <Component
       value={value}
+      onChangeCurrency={({ value }) => {
+        setValue(value)
+      }}
       inputProps={{
         placeholder: '0,00',
         onChange: (event) => {

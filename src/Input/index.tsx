@@ -58,10 +58,12 @@ export const CurrencyInput: React.FC<IInputProps> = ({
     const floatValue = accounting.unformat(String(value) || '0', ',')
     const localValue = floatValue.toString()
     const parsedValue = accounting.formatMoney(localValue, '', 2, '.', ',')
+    const newValue = (value || '').replace(/[^0-9.,]/g, '')
     const props = {
       float: floatValue,
       formatted: parsedValue,
       cents: Number(parsedValue.replace(/[.,\s]/g, '')),
+      value: newValue,
     }
 
     if (!maxValue && !minValue) {
