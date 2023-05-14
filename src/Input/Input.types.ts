@@ -4,6 +4,7 @@ export interface ChangeCurrencyEvent {
   cents: number
   float: number
   formatted: string
+  value: string
 }
 
 export type InputSize = 'sm' | 'md' | 'lg'
