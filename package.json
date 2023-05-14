@@ -11,7 +11,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && rollup -c",
+    "build": "NEXT_TELEMETRY_DISABLED=1 npm run clean && rollup -c",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky install",
@@ -20,7 +20,7 @@
     "predeploy": "npm run storybook build",
     "deploy-storybook": "gh-pages -d storybook-static",
     "publish:dev": "npm run build && npm publish --registry http://localhost:4873",
-    "publish:production": "npm run build && npm publish --registry https://registry.npmjs.org/"
+    "publish:production": "NEXT_TELEMETRY_DISABLED=1 npm run build && npm publish --registry https://registry.npmjs.org/"
   },
   "keywords": [],
   "author": "Alexandro castro",
