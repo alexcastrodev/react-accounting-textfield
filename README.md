@@ -1,6 +1,6 @@
 # Docs
 
-<a href="https://alexcastrodev.github.io/shopify-input-currency"> Documentation / Preview </a>
+[Documentation / Preview](https://alexcastrodev.github.io/react-accounting-textfield/?path=/docs/component-input--docs)
 
 # Package
 
