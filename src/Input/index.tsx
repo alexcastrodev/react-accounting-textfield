@@ -13,6 +13,7 @@ export const CurrencyInput: React.FC<IInputProps> = ({
   value,
   testID,
   onChangeCurrency,
+  onBlurCurrency,
   showCurrencyIcon,
   size = 'md',
   label,
@@ -86,6 +87,22 @@ export const CurrencyInput: React.FC<IInputProps> = ({
     }
   }
 
+  const onBlurCurrencyHandler = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { value } = event.target
+    const floatValue = accounting.unformat(String(value) || '0', ',')
+    const localValue = floatValue.toString()
+    const parsedValue = accounting.formatMoney(localValue, '', 2, '.', ',')
+    const newValue = (value || '').replace(/[^0-9.,]/g, '')
+    const props = {
+      float: floatValue,
+      formatted: parsedValue,
+      cents: Number(parsedValue.replace(/[.,\s]/g, '')),
+      value: newValue,
+    }
+
+    onBlurCurrency?.(props)
+  }
+
   const handleBlur = React.useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {
       if (!inputValue) return
@@ -93,6 +110,7 @@ export const CurrencyInput: React.FC<IInputProps> = ({
       setInputValue(accounting.formatMoney(localValue, '', 2, '.', ','))
 
       inputProps?.onBlur && inputProps.onBlur(event)
+      onBlurCurrencyHandler(event)
     },
     [inputValue]
   )
