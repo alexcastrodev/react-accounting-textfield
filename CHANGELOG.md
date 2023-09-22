@@ -7,21 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.4] - 2022-07-19
+## [1.0.1]
+
+### Added
+
+- onBlurCurrency that emit the same prop of onChangeCurrency
+
+## [1.0.0]
+
+- Only released
+
+## [0.2.4] - 2022-07-19
 
 - Fixed input controller
 
-## [1.2.3] - 2022-07-18
+## [0.2.3] - 2022-07-18
 
 - Added integration tests
 - Added Max and Min Value
 
-## [1.2.2] - 2022-07-18
+## [0.2.2] - 2022-07-18
 
 - Added css files
 - update readme.md
 
-## [1.2.1] - 2022-07-18
+## [0.2.1] - 2022-07-18
 
 - Export component types
 
