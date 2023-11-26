@@ -1,6 +1,6 @@
 import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { within, userEvent } from '@storybook/testing-library'
+import { StoryFn, Meta } from '@storybook/react'
+import { within, userEvent, fireEvent } from '@storybook/testing-library'
 import { expect } from '@storybook/jest'
 
 import Component from '../Input'
@@ -13,11 +13,9 @@ export default {
   parameters: {
     layout: 'fullscreen',
   },
-} as ComponentMeta<typeof Component>
+} as Meta<typeof Component>
 
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-)
+const Template: StoryFn<typeof Component> = (args) => <Component {...args} />
 
 export const InputCurrency = Template.bind({})
 
@@ -35,7 +33,7 @@ InputCurrency.play = async ({ canvasElement }) => {
   )
 }
 
-const TemplateControlled: ComponentStory<typeof Component> = (args) => {
+const TemplateControlled: StoryFn<typeof Component> = (args) => {
   const [value, setValue] = React.useState('0')
   return (
     <Component
@@ -193,4 +191,44 @@ UncontrolledMinAndMaxValue.play = async ({ canvasElement }) => {
   expect(canvas.getByTestId('react-currency-input-uncontrolled')).toHaveValue(
     '2,00'
   )
+}
+
+export const InputWithDecimalValues = Template.bind({})
+
+InputWithDecimalValues.args = {
+  helperText: 'Enter with your name',
+  label: 'Name',
+  inputProps: {
+    placeholder: '0,00',
+  },
+}
+
+InputWithDecimalValues.play = async ({ canvasElement, args }) => {
+  const canvas = within(canvasElement)
+  await userEvent.type(
+    canvas.getByTestId('react-currency-input-uncontrolled'),
+    '2,2412'
+  )
+
+  await canvas.getByTestId('react-currency-input-uncontrolled').blur()
+
+  expect(args.onBlurCurrency).toHaveBeenCalledWith({
+    cents: 224,
+    float: 2.24,
+    formatted: '2,24',
+    value: '2,2412',
+  })
+
+  // cleanup
+  await userEvent.clear(canvas.getByTestId('react-currency-input-uncontrolled'))
+  await fireEvent.input(
+    canvas.getByTestId('react-currency-input-uncontrolled'),
+    '2,2412'
+  )
+  expect(args.onChangeCurrency).toHaveBeenCalledWith({
+    cents: 224,
+    float: 2.24,
+    formatted: '2,24',
+    value: '2,2412',
+  })
 }

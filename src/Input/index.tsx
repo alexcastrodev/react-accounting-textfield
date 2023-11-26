@@ -54,11 +54,12 @@ export const CurrencyInput: React.FC<IInputProps> = ({
     onChangeCurrency && onChangeCurrency(props)
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const preparePayload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
-    const floatValue = accounting.unformat(String(value) || '0', ',')
-    const localValue = floatValue.toString()
-    const parsedValue = accounting.formatMoney(localValue, '', 2, '.', ',')
+    const floatValue = Number(
+      accounting.unformat(String(value) || '0', ',').toFixed(2)
+    )
+    const parsedValue = accounting.formatMoney(floatValue, '', 2, '.', ',')
     const newValue = (value || '').replace(/[^0-9.,]/g, '')
     const props = {
       float: floatValue,
@@ -67,12 +68,19 @@ export const CurrencyInput: React.FC<IInputProps> = ({
       value: newValue,
     }
 
+    return props
+  }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const props = preparePayload(event)
+    const { value, float } = props
+
     if (!maxValue && !minValue) {
       emitChanges(value, event, props)
     }
 
-    const isTestedMaxValue = maxValue && floatValue <= maxValue
-    const isTestedMinValue = minValue && floatValue >= minValue
+    const isTestedMaxValue = maxValue && float <= maxValue
+    const isTestedMinValue = minValue && float >= minValue
 
     if (minValue && !maxValue && isTestedMinValue) {
       emitChanges(value, event, props)
@@ -88,17 +96,7 @@ export const CurrencyInput: React.FC<IInputProps> = ({
   }
 
   const onBlurCurrencyHandler = (event: React.FocusEvent<HTMLInputElement>) => {
-    const { value } = event.target
-    const floatValue = accounting.unformat(String(value) || '0', ',')
-    const localValue = floatValue.toString()
-    const parsedValue = accounting.formatMoney(localValue, '', 2, '.', ',')
-    const newValue = (value || '').replace(/[^0-9.,]/g, '')
-    const props = {
-      float: floatValue,
-      formatted: parsedValue,
-      cents: Number(parsedValue.replace(/[.,\s]/g, '')),
-      value: newValue,
-    }
+    const props = preparePayload(event)
 
     onBlurCurrency?.(props)
   }

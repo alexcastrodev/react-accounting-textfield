@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0]
+
+### Added
+
+- onBlurCurrency now accepts decimal places, if you pass 1,1234, it will emit a object with 
+`{ value: '1,1234', float: 1.12, formatted: '1,12', cents: 112 }`
+
 ## [1.0.1]
 
 ### Added

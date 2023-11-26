@@ -20,7 +20,6 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'airbnb/base',
     'plugin:storybook/recommended',
   ],
   parser: '@typescript-eslint/parser',
